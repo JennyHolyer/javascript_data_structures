@@ -6,6 +6,7 @@ function Node(val){
 function SLL(){
  this.head;
 
+ // adds a node to the end of list
  this.addNode = function(val){
   if(this.head == undefined){
    this.head = new Node(val);
@@ -19,6 +20,7 @@ function SLL(){
   }
  }
 
+ // removes the node who's value matches the value passed in (returns false if not found)
  this.removeNode = function(val){
   if(this.head == undefined){
    return false;
@@ -40,6 +42,7 @@ function SLL(){
   }
  }
 
+ // return true if the list contains a value that matches the value passed to the function (return false if not found)
  this.find = function(val){
   if(this.head == undefined){
    return false;
@@ -55,6 +58,7 @@ function SLL(){
   return false;
  }
 
+ // adds a node directly after any node who's value matches the val_after passed in the function
  this.insert = function(val, val_after){
   if(this.head == undefined){
    return false;
@@ -73,6 +77,7 @@ function SLL(){
   return false;
  }
 
+ // return true if the list is empty
  this.isEmpty = function(){
   if(this.head == undefined){
    return true;
@@ -81,6 +86,7 @@ function SLL(){
   }
  }
 
+ // removes all of the duplicate nodes who's values match the value passed to the function
  this.removeDups = function(val){
   var count = 0;
   var current = this.head;
@@ -101,6 +107,7 @@ function SLL(){
   }
  }
 
+ // gathers all of the nodes and places them inside of an array which will make it easier to view the entire list
  this.showList = function(){
   var array = [];
   var current = this.head;

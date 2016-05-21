@@ -8,6 +8,7 @@ function DLL(){
  this.head;
  this.tail;
 
+ // adds a node to the end of list
  this.addNode = function(val){
   var node = new Node(val);
   if(this.head == undefined){
@@ -25,6 +26,7 @@ function DLL(){
   }
  }
 
+ // adds a node directly before any node who's value matches the val_after passed in the function
  this.insertBefore = function(val,position){
   var node = new Node(val);
   if(this.head == undefined){
@@ -52,6 +54,7 @@ function DLL(){
   return false;
  }
 
+ // return true if the list contains a value that matches the value passed to the function (return false if not found)
  this.findNode = function(val){
   var current = this.head;
   while(current != undefined){
@@ -64,6 +67,7 @@ function DLL(){
   return false;
  }
 
+ // return the total amount of nodes who's value mathes the value passed into the function
  this.findNodesWithValueOf = function(val){
   var count = 0;
   var current = this.head;
@@ -76,6 +80,7 @@ function DLL(){
   return count;
  }
 
+ // return true if node is at the position passed into the function (checked on a 0 index)
  this.findPosition = function(position){
   if(position < 0 || this.head == undefined){
    return false;
@@ -94,6 +99,7 @@ function DLL(){
   return false;
  }
 
+ // removes the first node found who's value matches the value passed into the function
  this.removeNode = function(val){
   if(this.head == undefined){
    return false;
@@ -121,6 +127,7 @@ function DLL(){
 
  }
 
+ // removes all nodes who's value matches the value passed into the function
  this.removeAllNodesWithValueOf = function(val){
   var num_nodes_to_delete = this.findNodesWithValueOf(val);
   for(var i = 0; i < num_nodes_to_delete; i++){
@@ -129,6 +136,7 @@ function DLL(){
   return this;
  }
 
+ // gathers all of the nodes and places them inside of an array which will make it easier to view the entire list
  this.showList = function(){
   var array = [];
   var current = this.head;
@@ -159,12 +167,3 @@ function DLL(){
 
 
 }
-
-var list = new DLL();
-list.addNode(9);
-list.addNode(4);
-list.addNode(6);
-list.addNode(9);
-
-list.insertBefore(3,4)
-console.log(list.showList())

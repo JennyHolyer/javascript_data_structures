@@ -7,6 +7,7 @@ function Queue(){
  this.head;
  this.tail;
 
+ // adds a new node to the end of the list
  this.enqueue = function(val){
   var node = new Node(val);
   if(this.head == undefined){
@@ -23,6 +24,7 @@ function Queue(){
   }
  }
 
+ // removes the front node from the list
  this.dequeue = function(){
   if(this.head == undefined){
    return false;
@@ -33,6 +35,7 @@ function Queue(){
   }
  }
 
+ // return the value of the first node in the list
  this.front = function(){
   if(this.head == undefined){
    return false;
@@ -41,6 +44,7 @@ function Queue(){
   }
  }
 
+ // return true if the list is empty
  this.isEmpty = function(){
   if(this.head == undefined){
    return true;
@@ -49,6 +53,7 @@ function Queue(){
   }
  }
 
+ // return true if the list conatains node with a value that matches the value passed to the function
  this.contains = function(val){
   var current = this.head;
   while(current != undefined){
@@ -60,6 +65,7 @@ function Queue(){
   return false;
  }
 
+ // return the size of the list
  this.count = function(){
   if(this.head == undefined){
    return 0
@@ -75,6 +81,7 @@ function Queue(){
 
  }
 
+ // gathers all of the nodes and places them inside of an array which will make it easier to view the entire list
  this.showList = function(){
   var array = [];
   var current = this.head;
@@ -86,11 +93,3 @@ function Queue(){
  }
 
 }
-
-var list = new Queue();
-list.enqueue(8);
-list.enqueue(10);
-
-console.log(list.count());
-
-console.log(list.showList());
