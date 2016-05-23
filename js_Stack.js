@@ -38,7 +38,7 @@ function Stack(){
   }
  }
 
- // returns the last node added to the stack which should always be the first one out
+ // removes and returns the last node added to the stack which should always be the first one out
  this.pop = function(){
   if(this.head == undefined){
    return false;
@@ -95,7 +95,7 @@ function Stack(){
  }
 
  // gathers all of the nodes and places them inside of an array which will make it easier to view the entire list
- this.showList = function(){
+ this.showStack = function(){
   var array = [];
   var current = this.head;
   while(current != undefined){
