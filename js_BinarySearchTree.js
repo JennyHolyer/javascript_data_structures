@@ -3,7 +3,6 @@ function Node(val){
  this.left;
  this.right;
 
-
  this.size = function(){
   size = 1
   if(this.left != undefined){
@@ -34,7 +33,32 @@ function Node(val){
    return 1 + left;
   }
  }
+
+ this.valid = function(min,max){
+  if(min == undefined){
+   min = 0;
+   max = 100;
+  }
+
+  if(this.value > max || this.value < min){
+   return false;
+  }
+  var valid = true;
+
+  if(this.left){
+   valid = this.left.valid(min, this.value);
+  }
+
+  if(this.right){
+   valid = this.right.valid(this.value, max);
+  }
+
+  return valid;
+
+ }
+
 }
+
 
 function BST(){
  this.root;
@@ -139,16 +163,23 @@ function BST(){
   }
  }
 
+ this.valid = function(){
+  if(this.root == undefined){
+   return true;
+  }else{
+   return this.root.valid();
+  }
+ }
+
 }
+// 
+// var list = new BST();
+// list.add(3);
+// list.add(8);
+// list.add(1);
+// list.add(9);
+// list.add(15);
+// list.add(14);
+// list.add(16);
 
-var list = new BST();
-list.add(3);
-list.add(8);
-list.add(1);
-list.add(9);
-list.add(15);
-list.add(14);
-
-list.add(16);
-console.log(list.height());
 // console.log(list);
