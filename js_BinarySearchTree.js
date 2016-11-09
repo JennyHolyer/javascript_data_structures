@@ -3,6 +3,7 @@ function Node(val){
  this.left;
  this.right;
 
+ //returns the total number of nodes in the bst
  this.size = function(){
   size = 1
   if(this.left != undefined){
@@ -14,6 +15,7 @@ function Node(val){
   return size;
  }
 
+ //returns the height, which is the longest sequence of nodes from the root to leaf node
  this.height = function(){
 
   var right = 0;
@@ -34,6 +36,7 @@ function Node(val){
   }
  }
 
+ //boolean check to see if the structure of the bst is valid
  this.valid = function(min,max){
   if(min == undefined){
    min = 0;
@@ -57,12 +60,35 @@ function Node(val){
 
  }
 
+ //boolean check to see if the bst is balanced correctly
+ this.balanced = function(){
+  var left_sum = 0;
+  var right_sum = 0;
+
+  if(this.left != undefined){
+   left_sum += this.left.balanced();
+  }
+
+  if(this.right != undefined){
+   right_sum += this.right.balanced();
+  }
+
+  if(left_sum == -1 || right_sum == -1 || Math.abs(left_sum - right_sum) > 1){
+   console.log(this.value);
+   return -1;
+  }
+
+  return Math.max(left_sum,right_sum) + 1
+
+ }
+
 }
 
 
 function BST(){
  this.root;
 
+ //adds a new node to the bst
  this.add = function(val){
   var node = new Node(val);
   if(this.root == undefined){
@@ -90,6 +116,7 @@ function BST(){
   }
  }
 
+ //boolean check to see if a particular node is inside of the bst
  this.contains = function(val){
   if(this.root == undefined){
    return false;
@@ -116,6 +143,7 @@ function BST(){
   }
  }
 
+ //returns the node with the smallest value
  this.min = function(){
   if(this.root == undefined){
    return false;
@@ -128,6 +156,7 @@ function BST(){
   }
  }
 
+ //returns the node with the largest value
  this.max = function(){
   if(this.root == undefined){
    return false;
@@ -140,6 +169,7 @@ function BST(){
   }
  }
 
+ //boolean check to see if the bst is empty
  this.isEmpty = function(){
   if(this.root == undefined){
    return true;
@@ -148,6 +178,7 @@ function BST(){
   }
  }
 
+ //returns the total number of nodes in the bst
  this.size = function(){
   if(this.root == undefined){
    return 0;
@@ -155,6 +186,7 @@ function BST(){
   return this.root.size();
  }
 
+ //returns the height, which is the longest sequence of nodes from the root to leaf node
  this.height = function(){
   if(this.root == undefined){
    return 0;
@@ -163,6 +195,7 @@ function BST(){
   }
  }
 
+ //boolean check to see if the structure of the bst is valid
  this.valid = function(){
   if(this.root == undefined){
    return true;
@@ -171,15 +204,24 @@ function BST(){
   }
  }
 
+ //boolean check to see if the bst is balanced correctly
+ this.balanced = function(){
+  if(this.root == undefined){
+   return true;
+  }else{
+   return this.root.balanced() >= 0;
+  }
+ }
+
 }
-// 
+
 // var list = new BST();
 // list.add(3);
 // list.add(8);
 // list.add(1);
 // list.add(9);
-// list.add(15);
-// list.add(14);
-// list.add(16);
-
-// console.log(list);
+//
+// list.add(2);
+//
+//
+// console.log(list.balanced());
