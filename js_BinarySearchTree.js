@@ -52,7 +52,7 @@ function Node(val){
    valid = this.left.valid(min, this.value);
   }
 
-  if(this.right){
+  if(this.right && valid != false){
    valid = this.right.valid(this.value, max);
   }
 
@@ -74,7 +74,6 @@ function Node(val){
   }
 
   if(left_sum == -1 || right_sum == -1 || Math.abs(left_sum - right_sum) > 1){
-   console.log(this.value);
    return -1;
   }
 
@@ -82,7 +81,67 @@ function Node(val){
 
  }
 
+ //iterates through the bst and prints out all of the values in order
+ this.traverse = function(){
+    if(this.left){
+      this.left.traverse();
+    }
+    console.log(this.value);
+    if(this.right){
+      this.right.traverse();
+    }
+
+    return;
+  }
+
+ //return the max node
+ this.max = function(){
+    if(this.right == undefined){
+      return this;
+    }else{
+      this.right.max();
+    }
+  }
+  //returns the min node
+  this.min = function(){
+    if(this.left == undefined){
+      return this;
+    }else{
+      this.right.min();
+    }
+  }
+
+  //removes the node with value passed in
+  this.remove = function(val, parent, side){
+
+      if(this.value == val){
+        if(this.left){
+          this.left.max().right = this.right;
+          if(side == "right"){
+            parent.right = this.left;
+          }else{
+            parent.left = this.left;
+          }
+
+        }else{
+          if(side == "right"){
+            parent.right = this.right;
+          }else{
+            parent.left = this.right;
+          }
+        }
+        return true;
+      }else if(this.value > val && this.left){
+        return this.left.remove(val,this, "left");
+      }else if(this.value < val && this.right){
+        return this.right.remove(val,this, "right");
+      }else{
+        return false;
+      }
+
+  }
 }
+
 
 
 function BST(){
@@ -98,19 +157,23 @@ function BST(){
    var current = this.root;
    while(true){
     if(current.value > val){
+
      if(current.left != undefined){
       current = current.left;
      }else{
       current.left = node;
       return this;
      }
+
     }else if(current.value < val){
+
      if(current.right != undefined){
       current = current.right;
      }else{
       current.right = node;
       return this;
      }
+
     }
    }
   }
@@ -123,13 +186,17 @@ function BST(){
   }else{
    var current = this.root;
    while(true){
+
     if(current.value < val){
+
      if(current.right == undefined){
       return false;
      }else{
       current = current.right;
      }
+
     }else if(current.value > val){
+
      if(current.left == undefined){
       return false;
      }else{
@@ -138,6 +205,7 @@ function BST(){
     }else{
      return true;
     }
+
    }
 
   }
@@ -213,15 +281,37 @@ function BST(){
   }
  }
 
+ //iterates through the bst and prints out all of the values in order
+ this.traverse = function(){
+    if(!this.root){
+      return undefined;
+    }
+
+    return this.root.traverse();
+  }
+
+ //removes the node with value passed in
+ this.remove = function(val){
+    if(!this.root){
+      return false;
+    }else if (this.root.value == val){
+      if(this.root.left){
+        this.root.left.max().right = this.root.right;
+        this.root = this.root.left;
+      }else{
+        this.root = this.root.right;
+      }
+    }else{
+
+      if(this.root.value > val && this.root.left){
+        return this.root.left.remove(val,this.root, "left");
+      }else if(this.root.value < val && this.root.right) {
+        return this.root.right.remove(val,this.root, "right");
+      }
+
+    }
+
+  }
 }
 
 // var list = new BST();
-// list.add(3);
-// list.add(8);
-// list.add(1);
-// list.add(9);
-//
-// list.add(2);
-//
-//
-// console.log(list.balanced());
