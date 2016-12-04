@@ -6,7 +6,6 @@ function quickSort(arr,start,end){
   }
 
   if(start >= end){
-    console.log("yo!!!!!!!!!!!!!")
     return;
   }
 
