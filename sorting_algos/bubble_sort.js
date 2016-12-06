@@ -2,10 +2,12 @@
 
 function bubbleSort(arr){
   var swapped = true;
+  var stopPoint = arr.length;
 
   while(swapped){
     swapped = false;
-    for(var i = 0; i < arr.length; i++){
+    for(var i = 0; i < stopPoint; i++){
+
       if(arr[i] > arr[i + 1]){
         swapped = true;
         var temp = arr[i];
@@ -13,7 +15,15 @@ function bubbleSort(arr){
         arr[i + 1] = temp;
       }
     }
+
+    if(swapped == false){
+      return arr;
+    }else{
+      stopPoint -= 1;
+    }
+
   }
+
   return arr;
 }
 
