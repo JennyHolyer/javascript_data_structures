@@ -102,6 +102,7 @@ function Node(val){
       this.right.max();
     }
   }
+  
   //returns the min node
   this.min = function(){
     if(this.left == undefined){
@@ -140,6 +141,43 @@ function Node(val){
       }
 
   }
+
+ //traverses the bst and returns an array with the numbers in order
+ this.toArray = function(arr){
+
+   if(this.left){
+     this.left.toArray(arr);
+   }
+
+   arr.push(this.value);
+
+   if(this.right){
+     this.right.toArray(arr);
+   }
+
+   return arr;
+ }
+
+ //return the min height from the root node
+ this.minHeight = function(){
+   var left_height = 1;
+   var right_height = 1;
+
+   if(this.left){
+     left_height += this.left.minHeight();
+   }
+
+   if(this.right){
+     right_height += this.right.minHeight();
+   }
+
+   if(left_height <= right_height){
+     return left_height;
+   }else{
+     return right_height;
+   }
+
+ }
 }
 
 
@@ -312,6 +350,31 @@ function BST(){
     }
 
   }
+
+ //traverses the bst and returns an array with the numbers in order
+ this.toArray = function(){
+   if(this.root == undefined){
+     return [];
+   }
+
+   return this.root.toArray([]);
+ }
+
+ //return the min height from the root node
+ this.minHeight = function(){
+   if(this.root == undefined){
+     return 0;
+   }
+
+   return this.root.minHeight();
+ }
 }
 
-// var list = new BST();
+var list = new BST();
+list.add(30);
+list.add(10);
+list.add(40);
+list.add(38);
+list.add(50);
+// list.add(5);
+console.log(list.minHeight());
