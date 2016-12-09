@@ -102,7 +102,7 @@ function Node(val){
       this.right.max();
     }
   }
-  
+
   //returns the min node
   this.min = function(){
     if(this.left == undefined){
@@ -178,6 +178,36 @@ function Node(val){
    }
 
  }
+
+ this.preOrder = function(array){
+   array.push(this.value);
+
+   if(this.left){
+     this.left.preOrder(array);
+   }
+
+   if(this.right){
+     this.right.preOrder(array);
+   }
+
+   return array;
+ }
+
+ this.postOrder = function(array){
+
+   if(this.left){
+     this.left.postOrder(array);
+   }
+
+   if(this.right){
+     this.right.postOrder(array);
+   }
+
+   array.push(this.value);
+
+   return array;
+ }
+ 
 }
 
 
@@ -368,13 +398,35 @@ function BST(){
 
    return this.root.minHeight();
  }
+
+ this.preOrder = function(){
+   if(this.root == undefined){
+     return false;
+   }
+
+   return this.root.preOrder([]);
+ }
+
+ this.postOrder = function(){
+   if(this.root == undefined){
+     return false;
+   }
+
+   return this.root.postOrder([]);
+ }
 }
 
 var list = new BST();
-list.add(30);
+list.add(7);
+list.add(1);
+list.add(0);
+list.add(3)
+list.add(2);
+list.add(5);
+list.add(4);
+list.add(6);
+list.add(9);
+list.add(8);
 list.add(10);
-list.add(40);
-list.add(38);
-list.add(50);
 // list.add(5);
-console.log(list.minHeight());
+console.log(list.postOrder());
