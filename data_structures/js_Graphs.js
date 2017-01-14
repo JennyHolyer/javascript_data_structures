@@ -37,7 +37,6 @@ function Graph(){
   this.hasPath = function(val1,val2){
     //make sure both nodes are in the map
     if(!this.find(val1) || !this.find(val2)){
-      console.log('here',val1,val2);
       return false;
     }
 
@@ -75,7 +74,6 @@ function Graph(){
   this.hasPath2 = function(val1,val2){
     //make sure both nodes are in the map
     if(!this.find(val1) || !this.find(val2)){
-      console.log('here',val1,val2);
       return false;
     }
 
@@ -105,8 +103,6 @@ function Graph(){
       var nextNodeToCheck = this.queue.shift();
       return this.hasPath(nextNodeToCheck,val2);
     }
-
-
 
 
   }
@@ -147,9 +143,7 @@ function Graph(){
     return smallest(array);
   }
 
-
   // private
-
   function smallest(array){
     var min = array[0];
 

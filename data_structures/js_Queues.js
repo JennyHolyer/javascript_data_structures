@@ -5,21 +5,19 @@ function Node(val){
 
 function Queue(){
  this.head;
- this.tail;
 
  // adds a new node to the end of the list
  this.enqueue = function(val){
   var node = new Node(val);
   if(this.head == undefined){
    this.head = node;
-   this.tail = node;
   }else{
    var current = this.head;
    while(current.next != undefined){
     current = current.next;
    }
    current.next = node;
-   this.tail = node;
+
    return this;
   }
  }
@@ -36,7 +34,7 @@ function Queue(){
  }
 
  // return the value of the first node in the list
- this.front = function(){
+ this.peek = function(){
   if(this.head == undefined){
    return false;
   }else{
@@ -82,7 +80,7 @@ function Queue(){
  }
 
  // gathers all of the nodes and places them inside of an array which will make it easier to view the entire list
- this.showList = function(){
+ this.displayQueue = function(){
   var array = [];
   var current = this.head;
   while(current != undefined){

@@ -90,25 +90,45 @@ function SLL(){
  this.removeDups = function(val){
   var count = 0;
   var current = this.head;
-  while(current != undefined){
-   if(current.value == val){
+
+  if(current === undefined){
+    return false;
+  }else if(current.value === val){
     count += 1;
-   }
-   current = current.next
   }
 
-  if(count > 1){
-   for(var i = 0; i < count;i++){
-    this.removeNode(val);
-   }
-   return true;
-  }else{
-   return false;
+  while(current && current.next){
+
+    if(current.next.value === val && count === 1){
+
+      if(!current.next.next){
+        current.next = current.next.next;
+        return;
+      }else if(current.next.next.value != val){
+        current.next = current.next.next;
+      }else{
+        var temp = current.next.next;
+        while(temp && temp.value === val){
+          temp = temp.next;
+        }
+
+        current.next = temp;
+      }
+
+    }else if(current.next.value === val){
+      count += 1;
+      current = current.next;
+    }else{
+      current = current.next;
+    }
+
   }
+
+  return this;
  }
 
  // gathers all of the nodes and places them inside of an array which will make it easier to view the entire list
- this.showList = function(){
+ this.displayList = function(){
   var array = [];
   var current = this.head;
   while(current != undefined){

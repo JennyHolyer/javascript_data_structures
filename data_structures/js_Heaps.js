@@ -1,5 +1,3 @@
-// parent = (index - 2) / 2;
-
 function Heap(){
   this.list = [];
 
@@ -15,8 +13,7 @@ function Heap(){
       return false;
     }
 
-    var index = 0;
-    list[index] = list.pop();
+    list[0] = list.pop();
     this.bubbleDown();
   }
 
